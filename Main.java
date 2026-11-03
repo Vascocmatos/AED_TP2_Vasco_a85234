@@ -15,6 +15,7 @@ public class Main {
             switch (opcao) {
                 case 1:
                     System.out.println("A listar...");
+                    
                     break;
                 case 2:
                     System.out.print("Nome: ");
