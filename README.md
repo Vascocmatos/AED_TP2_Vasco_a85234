@@ -55,3 +55,6 @@ Adicione quaisquer observações relevantes sobre o desenvolvimento, dificuldade
 
 ---
 <!-- **Nota:** Este manual deve ter entre 2 a 3 páginas quando convertido para DOCX -> PDF. -->
+
+
+para cada um dos dados deve ser questionado quanta memporioa é necesaria para guardar o mambo tipo a data o dia do ano o mes e o ano precisam de tamanhos diferentes
