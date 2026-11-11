@@ -1,78 +1,39 @@
-import java.io.ByteArrayOutputStream;
+package R_W;
+
+import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
+import Pessoas.ListaPessoas;
+import Pessoas.Pessoa;
 
 public class Leitura {
     public ListaPessoas leitura(String nomeFicheiro) {
         ListaPessoas lista = new ListaPessoas();
-        ByteArrayOutputStream linhaAtual = new ByteArrayOutputStream();
+        try (DataInputStream in = new DataInputStream(new FileInputStream(nomeFicheiro))) {
+            while (true) {
+                String nomeCompleto;
 
-        String nomeCompleto = null;
-        String dataNascimento = null;
-        String numero = null;
-        int campo = 0;
-
-        try (FileInputStream in = new FileInputStream(nomeFicheiro)) {
-            int byteLido;
-
-            while ((byteLido = in.read()) != -1) {
-                int valorAscii = byteLido & 0xFF;
-
-                if (valorAscii == 10 || valorAscii == 13) {
-                    String linha = new String(linhaAtual.toByteArray(), StandardCharsets.UTF_8).trim();
-                    linhaAtual.reset();
-
-                    if (linha.isEmpty()) {
-                        continue;
-                    }
-
-                    if (campo == 0) {
-                        nomeCompleto = linha;
-                    } else if (campo == 1) {
-                        dataNascimento = linha;
-                    } else if (campo == 2) {
-                        numero = linha;
-                    }
-
-                    campo++;
-
-                    if (campo == 3) {
-                        lista.adicionarPessoa(new Pessoa(nomeCompleto, dataNascimento, numero));
-                        nomeCompleto = null;
-                        dataNascimento = null;
-                        numero = null;
-                        campo = 0;
-                    }
-
-                    continue;
+                try {
+                    nomeCompleto = in.readUTF();
+                } catch (EOFException e) {
+                    break;
                 }
 
-                linhaAtual.write(valorAscii);
+                int dia = in.readUnsignedByte();
+                int mes = in.readUnsignedByte();
+                int ano = in.readUnsignedShort();
+                int numero = in.readInt();
+
+                String dataNascimento = String.format("%02d/%02d/%04d", dia, mes, ano);
+                lista.adicionarPessoa(new Pessoa(nomeCompleto, dataNascimento,
+                        String.valueOf(numero)));
             }
-
-            String ultimaLinha = new String(linhaAtual.toByteArray(), StandardCharsets.UTF_8).trim();
-            if (!ultimaLinha.isEmpty()) {
-                if (campo == 0) {
-                    nomeCompleto = ultimaLinha;
-                } else if (campo == 1) {
-                    dataNascimento = ultimaLinha;
-                } else if (campo == 2) {
-                    numero = ultimaLinha;
-                }
-
-                campo++;
-
-                if (campo == 3) {
-                    lista.adicionarPessoa(new Pessoa(nomeCompleto, dataNascimento, numero));
-                }
-            }
-
         } catch (IOException e) {
-            System.out.println("Erro a ler o ficheiro binário");
+            System.err.println("Erro a ler o ficheiro binário: " + e.getMessage());
         }
 
         return lista;
     }
 }
-
