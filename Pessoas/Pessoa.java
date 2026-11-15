@@ -11,7 +11,7 @@ public class Pessoa {
 
     public Pessoa(String nome, String dataNascimento, String numero) {
         this.setNomeCompleto(nome);
-        this.dataNascimento = dataNascimento;
+        this.setDataNascimento(dataNascimento);
         this.numero = numero;
     }
 
@@ -60,7 +60,12 @@ public class Pessoa {
     }
 
     public void setDataNascimento(String dataNascimento) {
+        DataNascimento.converter(dataNascimento);
         this.dataNascimento = dataNascimento;
+    }
+
+    public int getIdade() {
+        return DataNascimento.calcularIdade(dataNascimento);
     }
 
     public String getNumero() {

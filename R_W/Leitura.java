@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import Pessoas.ListaPessoas;
 import Pessoas.Pessoa;
+import Pessoas.DataNascimento;
 
 public class Leitura {
     public ListaPessoas leitura(String nomeFicheiro) {
@@ -27,8 +28,14 @@ public class Leitura {
                 int numero = in.readInt();
 
                 String dataNascimento = String.format("%02d/%02d/%04d", dia, mes, ano);
-                lista.adicionarPessoa(new Pessoa(nomeCompleto, dataNascimento,
-                        String.valueOf(numero)));
+                try {
+                    DataNascimento.converter(dataNascimento);
+                    lista.adicionarPessoa(new Pessoa(nomeCompleto, dataNascimento,
+                            String.valueOf(numero)));
+                } catch (IllegalArgumentException e) {
+                    throw new IOException("Data inválida no ficheiro binário: "
+                            + dataNascimento, e);
+                }
             }
         } catch (IOException e) {
             System.err.println("Erro a ler o ficheiro binário: " + e.getMessage());

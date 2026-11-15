@@ -58,3 +58,9 @@ Adicione quaisquer observações relevantes sobre o desenvolvimento, dificuldade
 
 
 para cada um dos dados deve ser questionado quanta memporioa é necesaria para guardar o mambo tipo a data o dia do ano o mes e o ano precisam de tamanhos diferentes
+
+
+
+cenas minhas que eu quero tomar nota para adicionar mais tarde ao readme
+
+As listas de feminino e masculino foram antreormente uma lista que eu fui buscar ao IRN instituto de registos nacional e com um script LimparListas.java(totalmente feito com AI) limpei os nomes que
