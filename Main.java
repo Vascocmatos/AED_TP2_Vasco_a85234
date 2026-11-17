@@ -5,7 +5,7 @@ import java.util.Scanner;
 import Pessoas.ListaPessoas;
 import Pessoas.DataNascimento;
 import Pessoas.Pessoa;
-import Pessoas.Sexo;
+import Pessoas.Genero;
 import R_W.Leitura;
 
 public class Main {
@@ -17,7 +17,7 @@ public class Main {
         }
 
         String nomeFicheiro = args[0];
-
+        // se o ficheiro não existir no diretório atual, procura na pasta input
         File ficheiroOriginal = new File(nomeFicheiro);
         if (!ficheiroOriginal.exists()) {
             File ficheiroNaInput = new File("input", nomeFicheiro);
@@ -29,13 +29,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Leitura leitura = new Leitura();
         ListaPessoas pessoas = leitura.leitura(nomeFicheiro);
-        Sexo sexo;
+        Genero genero;
 
         try {
-            sexo = new Sexo();
-            sexo.organizar(pessoas);
+            genero = new Genero();
+            genero.organizar(pessoas);
         } catch (IOException e) {
-            System.err.println("Erro ao preparar as listas por sexo: " + e.getMessage());
+            System.err.println("Erro ao preparar as listas por genero: " + e.getMessage());
             sc.close();
             return;
         }
@@ -56,7 +56,7 @@ public class Main {
                     do {
                         System.out.println("#####################");
                         System.out.println("1 - Listar todas");
-                        System.out.println("2 - Dividir por sexo");
+                        System.out.println("2 - Dividir por genero");
                         System.out.println("3 - Maiores de 18 anos");
                         System.out.println("4 - Menores de 18 anos");
                         System.out.println("0 - Voltar");
@@ -68,7 +68,7 @@ public class Main {
                                 pessoas.listarPessoas();
                                 break;
                             case 2:
-                                listarPorSexo(sexo);
+                                listarPorGenero(genero);
                                 break;
                             case 3:
                                 listarPorIdade(pessoas, true);
@@ -99,12 +99,12 @@ public class Main {
 
                     Pessoa pessoa = new Pessoa(nome, dataNascimento, numero);
                     pessoas.adicionarPessoa(pessoa);
-                    sexo.adicionarPessoa(pessoa);
+                    genero.adicionarPessoa(pessoa);
                     System.out.println("Pessoa inserida com sucesso.");
                     break;
                 case 3:
                     try {
-                        sexo.gravarListas();
+                        genero.gravarListas();
                         System.out.println("Ficheiros de mulheres e homens criados em output.");
                     } catch (IOException e) {
                         System.err.println("Não foi possível criar os ficheiros de saída: "
@@ -117,16 +117,16 @@ public class Main {
         sc.close();
     }
 
-    private static void listarPorSexo(Sexo sexo) {
+    private static void listarPorGenero(Genero genero) {
         System.out.println("Mulheres:");
-        sexo.getMulheres().listarPessoas();
+        genero.getMulheres().listarPessoas();
         System.out.println("Homens:");
-        sexo.getHomens().listarPessoas();
+        genero.getHomens().listarPessoas();
 
-        if (sexo.getNaoClassificadas().tamanho() > 0) {
+        if (genero.getNaoClassificadas().tamanho() > 0) {
             System.out.println("Não classificadas:");
-            sexo.getNaoClassificadas().listarPessoas();
-            for (Pessoa pessoa : sexo.getNaoClassificadas().getPessoas()) {
+            genero.getNaoClassificadas().listarPessoas();
+            for (Pessoa pessoa : genero.getNaoClassificadas().getPessoas()) {
                 System.out.println("Nome não reconhecido ou não autorizado: "
                         + pessoa.getPrimeiroNome());
             }

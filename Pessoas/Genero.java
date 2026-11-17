@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-public class Sexo {
+public class Genero {
     private ListaPessoas mulheres;
     private ListaPessoas homens;
     private ListaPessoas naoClassificadas;
     private final Set<String> nomesFemininos;
     private final Set<String> nomesMasculinos;
 
-    public Sexo() throws IOException {
+    public Genero() throws IOException {
         mulheres = new ListaPessoas();
         homens = new ListaPessoas();
         naoClassificadas = new ListaPessoas();
