@@ -112,6 +112,30 @@ minúsculas e aplica as regras pela seguinte ordem:
 
 As listas mantêm a ordem de inserção.
 
+### Pesquisa binária dos nomes
+
+Os nomes das listas femininas e masculinas são carregados a partir dos ficheiros
+`feminino_limpo.txt` e `masculino_limpo.txt` e organizados por ordem alfabética
+antes da classificação. Para verificar se um primeiro nome pertence a uma das
+listas, o programa utiliza pesquisa binária:
+
+1. determina o nome situado no meio da parte atual da lista;
+2. compara esse nome com o primeiro nome da pessoa;
+3. se forem iguais, encontra uma correspondência;
+4. se o nome procurado for menor, continua a pesquisa na metade anterior;
+5. caso contrário, continua a pesquisa na metade seguinte;
+6. repete os passos até encontrar o nome ou até não existirem posições para
+   continuar a pesquisa.
+
+Esta pesquisa reduz a procura numa lista ordenada para, no máximo,
+$\log_2(n)$ comparações. A verificação é feita tanto no carregamento inicial
+como no momento da inserção manual de uma pessoa.
+
+Quando um nome aparece nas listas masculina e feminina, a correspondência
+masculina tem prioridade. Se o nome não existir em nenhuma lista nem terminar
+em `a` ou `o`, a pessoa é inserida na lista de não classificadas e o programa
+informa imediatamente o utilizador durante a inserção.
+
 ## 3. Estrutura do Ficheiro
 
 ### Ficheiro de entrada em texto

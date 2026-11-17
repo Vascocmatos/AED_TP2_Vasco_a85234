@@ -99,8 +99,14 @@ public class Main {
 
                     Pessoa pessoa = new Pessoa(nome, dataNascimento, numero);
                     pessoas.adicionarPessoa(pessoa);
-                    genero.adicionarPessoa(pessoa);
-                    System.out.println("Pessoa inserida com sucesso.");
+                    String classificacao = genero.adicionarPessoa(pessoa);
+                    if (classificacao.equals("não classificado")) {
+                        System.out.println("Pessoa inserida, mas o nome \""
+                                + pessoa.getPrimeiroNome() + "\" não foi reconhecido ou não autorizado.");
+                    } else {
+                        System.out.println("Pessoa inserida como " + classificacao + ": "
+                                + pessoa.getPrimeiroNome());
+                    }
                     break;
                 case 3:
                     try {
