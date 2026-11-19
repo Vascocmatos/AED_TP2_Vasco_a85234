@@ -209,3 +209,5 @@ O uso de `ArrayList` permite inserir e percorrer os registos de forma simples,
 mantendo a ordem original. A validação centralizada em `DataNascimento` evita
 que datas inválidas sejam aceites tanto na leitura dos ficheiros como na
 inserção manual.
+
+Foi utilizado um repositório git na platagorma github para controlo de versão e para a criação dos ficheiros ConversorBinario e a estrutura base markdown do README atravez do copilot e das IA integradas no vscode.
