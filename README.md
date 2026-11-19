@@ -119,20 +119,26 @@ Os nomes das listas femininas e masculinas são carregados a partir dos ficheiro
 antes da classificação. Para verificar se um primeiro nome pertence a uma das
 listas, o programa utiliza pesquisa binária:
 
-1. determina o nome situado no meio da parte atual da lista;
-2. compara esse nome com o primeiro nome da pessoa;
-3. se forem iguais, encontra uma correspondência;
-4. se o nome procurado for menor, continua a pesquisa na metade anterior;
-5. caso contrário, continua a pesquisa na metade seguinte;
-6. repete os passos até encontrar o nome ou até não existirem posições para
+1. Determina o nome situado no meio da parte atual da lista;
+2. Compara esse nome com o primeiro nome da pessoa;
+3. Se forem iguais, encontra uma correspondência;
+4. Se o nome procurado for menor, continua a pesquisa na metade anterior;
+5. Caso contrário, continua a pesquisa na metade seguinte;
+6. Repete os passos até encontrar o nome ou até não existirem posições para
    continuar a pesquisa.
 
-Esta pesquisa reduz a procura numa lista ordenada para, no máximo,
+Esta pesquisa reduz a procura numa lista ordenada de $n$ para, no máximo,
 $\log_2(n)$ comparações. A verificação é feita tanto no carregamento inicial
 como no momento da inserção manual de uma pessoa.
 
+| n | │ | Linear (pior caso) | Binária (pior caso) |
+|---:|:---:|---:|---:|
+| 1 000 | │ | 1 000 | 10 |
+| 1 000 000 | │ | 1 000 000 | 20 |
+| 1 000 000 000 | │ | 1 000 000 000 | 30 |
+
 Quando um nome aparece nas listas masculina e feminina, a correspondência
-masculina tem prioridade. Se o nome não existir em nenhuma lista nem terminar
+masculina tem prioridade (por exemplo "Zoé"). Se o nome não existir em nenhuma lista nem terminar
 em `a` ou `o`, a pessoa é inserida na lista de não classificadas e o programa
 informa imediatamente o utilizador durante a inserção.
 
