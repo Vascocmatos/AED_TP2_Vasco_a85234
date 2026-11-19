@@ -36,7 +36,7 @@ impossíveis ou futuras.
 
 Encapsula a coleção de pessoas numa `ArrayList<Pessoa>`. Implementa as operações de adicionar, remover, consultar por índice, obter o tamanho e listar os elementos.
 
-### `Pessoas\Sexo`
+### `Pessoas\Genero`
 
 Cria e mantém três listas: mulheres, homens e pessoas não classificadas.
 Inicialmente lê os ficheiros de nomes femininos e masculinos existentes em
@@ -65,8 +65,8 @@ Esta classe tem como objetivo converter o ficheiro original dados.txt para biná
 
 ### Relação entre as classes
 
-`Main` utiliza `Leitura` para obter uma `ListaPessoas`. Cada elemento dessa lista é um objeto `Pessoa`. A classe `Sexo` percorre a lista original e
-distribui as pessoas pelas listas correspondentes. `DataNascimento`, e a separação por sexo, são usadas na primeira leitura do ficheiro `dados.bin` e quando é adicionado uma nova pessoa.
+`Main` utiliza `Leitura` para obter uma `ListaPessoas`. Cada elemento dessa lista é um objeto `Pessoa`. A classe `Género` percorre a lista original e
+distribui as pessoas pelas listas correspondentes. `DataNascimento`, e a separação por género, são usadas na primeira leitura do ficheiro `dados.bin` e quando é adicionado uma nova pessoa.
 
 ## 2. Funcionamento do Programa
 
@@ -91,10 +91,10 @@ distribui as pessoas pelas listas correspondentes. `DataNascimento`, e a separa�
 
 Depois do carregamento, o programa disponibiliza:
 
-- **Listar:** abre as opções de listar todas as pessoas, dividir por sexo,
+- **Listar:** abre as opções de listar todas as pessoas, dividir por género,
   listar maiores de 18 anos ou listar menores de 18 anos;
 - **Inserir:** pede o nome, a data de nascimento e o número, valida a data e
-  adiciona a nova pessoa à lista geral e à lista de sexo correspondente;
+  adiciona a nova pessoa à lista geral e à lista de género correspondente;
 - **Imprimir:** grava as listas de mulheres e homens em ficheiros binários na
   pasta `output`;
 - **Sair:** termina o programa.
