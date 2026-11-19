@@ -193,6 +193,10 @@ java -cp input ConversorBinario input\dados.txt input\dados.bin
 
 Os ficheiros gerados pela opção **Imprimir** ficam na pasta `output`.
 
+## 5. output
+
+Da mesma forma que os dados sao lidos também sao impessos nos ficheiros de saida. Ou seja a estrutura dos dados irá ser dois bytes a definir o tamanho do nome da pessoa e de seguida os repetivos numero de bytes a contar o ASCII de cada caracter do nome. A seguir o dia e mês guardados num byte com o ano guardado em dois (short) e por fim o numero de telefone guardado em 4 bytes (int).
+
 ## 6. Observações Finais
 
 As listas de nomes femininos e masculinos foram obtidas a partir de listas
